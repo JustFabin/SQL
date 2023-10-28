@@ -1,0 +1,59 @@
+select c.nome, c.data_de_nascimento, c.sexo, c.cidade from clientes c
+
+select * from clientes where sexo = 'M' order by cidade
+
+select * from clientes where cidade in ('Santo André', 'São Caetano') order by cidade
+
+select * from produtos where categoria = 'Calçado'
+
+select * from produtos where preco_de_venda > 80 order by tamanho
+
+select * from produtos where cor in ('Verde', 'Azul') order by cor, tamanho
+
+select * from vendas where dia_da_semana = 'domingo'
+
+select * from vendas where data = '02/02/2021'
+
+#Tables:
+
+CREATE TABLE clientes(
+id_cliente INTEGER PRIMARY KEY,
+nome VARCHAR,
+dia INTEGER,
+mês INTEGER,
+ano INTEGER,
+data_de_nascimento DATE,
+ano_de_nascimento DATE,
+sexo VARCHAR,
+cidade VARCHAR
+)
+
+
+CREATE TABLE lojas(
+id_loja INTEGER PRIMARY KEY,
+nome_da_loja VARCHAR,
+local VARCHAR,
+cidade VARCHAR
+)
+
+
+CREATE TABLE produtos(
+id_produto INTEGER PRIMARY KEY,
+produto VARCHAR,
+categoria VARCHAR,
+cor VARCHAR,
+tamanho VARCHAR,
+custo DECIMAL,
+preco_de_venda DECIMAL
+)
+
+
+CREATE TABLE vendas(
+id_venda INTEGER PRIMARY KEY,
+data DATE,
+hora DATETIME,
+id_loja INTEGER REFERENCES lojas (id_loja),
+id_cliente INTEGER REFERENCES clientes (id_cliente),
+id_produto INTEGER REFERENCES produtos (id_produto),
+dia_da_semana VARCHAR
+)
